@@ -1,17 +1,22 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render }  from 'react-dom';
+import { BrowserRouter as Router } from "react-router-dom";
 import './index.css';
 import App from './App';
-import store from './app/store';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
+import configureStore from './redux/store';
 
-ReactDOM.render(
-  <React.StrictMode>
+const store = configureStore();
+
+ render(
+  
     <Provider store={store}>
-      <App />
+      <Router>
+        <App />
+      </Router>
     </Provider>
-  </React.StrictMode>,
+ ,
   document.getElementById('root')
 );
 
