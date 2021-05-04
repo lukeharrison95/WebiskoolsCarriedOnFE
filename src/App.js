@@ -6,8 +6,9 @@ import EditPage from './components/pages/editPage';
 import NavBar from './components/general/navbar';
 import CreatePage from './components/pages/createPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import LoginPage from './components/pages/loginPage';
 import './App.css';
+
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/viewQuiz" component={ViewPage}/>
           <Route path="/editQuiz" component={EditPage}/>
           <Route path="/createQuiz" component={CreatePage}/>
+          <Route path="/login" component={LoginPage}/>
 
      
     </div>

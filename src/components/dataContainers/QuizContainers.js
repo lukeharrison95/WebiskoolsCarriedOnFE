@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import {useDispatch} from 'react-redux'
 import { ListGroup, Button } from 'react-bootstrap'
-import { getSingleQuiz, deleteQuiz, getQuizzes } from '../../redux'
+import { getSingleQuiz, deleteQuiz, getQuizzes } from '../../redux/actions/quiz/quizActions'
 import { useHistory } from 'react-router-dom'
 
 

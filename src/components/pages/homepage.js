@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import QuizContainer from "../dataContainers/QuizContainers"
 import { useSelector, useDispatch } from "react-redux";
-import { getQuizzes} from "../../redux";
+import { getQuizzes} from "../../redux/actions/quiz/quizActions";
 
 
 const HomePage = () => {
