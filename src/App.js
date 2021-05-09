@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route } from "react-router-dom";
+import ProtectedRoute from "./components/general/protectedRoute";
 import HomePage from "./components/pages/homepage";
 import ViewPage from './components/pages/viewPage';
 import EditPage from './components/pages/editPage';
@@ -8,17 +9,20 @@ import CreatePage from './components/pages/createPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import LoginPage from './components/pages/loginPage';
 import './App.css';
+import { useSelector } from 'react-redux';
 
 
 function App() {
+
+  const user = useSelector( (state) => state.users.currentUser)
   return (
     <div className="App">
           <Route path="/" component={NavBar}/>
-          <Route exact path="/" component={HomePage} />
-          <Route path="/viewQuiz" component={ViewPage}/>
-          <Route path="/editQuiz" component={EditPage}/>
-          <Route path="/createQuiz" component={CreatePage}/>
-          <Route path="/login" component={LoginPage}/>
+          <ProtectedRoute exact path="/" component={HomePage}  currentUser={ user } />
+          <ProtectedRoute path="/viewQuiz" component={ViewPage}/>
+          <ProtectedRoute path="/editQuiz" component={EditPage}/>
+          <ProtectedRoute path="/createQuiz" component={CreatePage}/>
+          <Route exact path="/login" component={LoginPage}/>
 
      
     </div>
