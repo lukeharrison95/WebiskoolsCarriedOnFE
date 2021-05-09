@@ -45,6 +45,7 @@ const LoginPage = () =>{
                         fullWidth
                         placeholder="password"
                         onChange={(e) => setPassword(e.target.value)}
+                        type="password"
                         label="Password"
                         required
                         margin="normal"

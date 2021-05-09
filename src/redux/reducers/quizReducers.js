@@ -3,7 +3,8 @@ import {
     GET_QUIZ_SUCCESS,
     GET_QUIZ_FAILURE,
     GET_SINGLE_QUIZ,
-    DELETE_QUIZ
+    DELETE_QUIZ,
+    DELETE_QUIZ_FAILURE
 } from '../actions/quiz/quizTypes';
 
 const initialState = {
@@ -11,7 +12,8 @@ const initialState = {
     quizzes: [],
     error:'',
     updateNeeded: false,
-    selectedQuiz:{}
+    selectedQuiz:{},
+    deleteFailure: false
 }
 
 const reducer = (state = initialState, action) => {
@@ -48,6 +50,11 @@ const reducer = (state = initialState, action) => {
                 selectedQuiz:{},
                 updateNeeded: true
 
+            }
+        case DELETE_QUIZ_FAILURE:
+            return{
+                ...state,
+                deleteFailure: true
             }
     
         default: return state

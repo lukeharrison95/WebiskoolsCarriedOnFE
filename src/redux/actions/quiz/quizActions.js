@@ -4,7 +4,8 @@ import {
     GET_QUIZ_SUCCESS,
     GET_QUIZ_FAILURE,
     GET_SINGLE_QUIZ,
-    DELETE_QUIZ
+    DELETE_QUIZ,
+    DELETE_QUIZ_FAILURE
 } from './quizTypes';
 
 export const getQuizzes = () =>  async(dispatch) => {
@@ -74,23 +75,23 @@ export const getSingleQuizSuccess = selectedQuiz => {
     }
 }
 
-export const deleteQuiz = (id) => {
-    return (dispatch) => {
-        axios.delete('/quizmaster/Quiz/deleteQuiz/' + id)
-        .then(
-            response => {
-                console.log(response)
-                if(response.data.deletedCount ===1){
-                    dispatch(deleteQuizSuccess())
-                }    
-            }
-        )
-    }
-
-}
-
-export const deleteQuizSuccess = () =>{
-    return{
-        type: DELETE_QUIZ
+export const deleteQuiz = (id) => async(dispatch) => {
+    try{
+        const token = {
+            headers:{
+                Authorization: localStorage.getItem("token"), 
+            },
+        };
+        const res = await axios.delete('/quizmaster/deleteQuiz?id=' + id, token)
+        dispatch({
+            type: DELETE_QUIZ
+        })
+    } catch(err){
+        dispatch({
+            type: DELETE_QUIZ_FAILURE,
+            payload: err
+        })
     }
 }
+    
+   
