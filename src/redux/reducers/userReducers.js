@@ -12,6 +12,7 @@ const reducer = (state = initialState, action) => {
     switch(action.type){
         case LOGIN_SUCCESS:
             return{
+                ...state,
                 currentUser: action.payload.userId
             }
         case LOGIN_FAILURE:

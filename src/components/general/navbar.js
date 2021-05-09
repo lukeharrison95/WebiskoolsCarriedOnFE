@@ -8,13 +8,16 @@ const NavBar = () => {
     function toCreatepage(){
         history.push("/createQuiz")
     };
+    function toHomepage(){
+        history.push("/")
+    };
 
     return (
         <Navbar bg="light" expand="lg">
 
-            <Navbar.Brand href="/"> QuizManager </Navbar.Brand>
+            <Navbar.Brand onClick={(e)=>{toHomepage()}}> QuizManager </Navbar.Brand>
 
-            <Button variant="success" href="/createQuiz" >Create Quiz</Button>
+            <Button variant="success" onClick={(e)=>{toCreatepage()}} >Create Quiz</Button>
             
         </Navbar>
     )

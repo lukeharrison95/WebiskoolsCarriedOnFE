@@ -7,22 +7,44 @@ import {
     DELETE_QUIZ
 } from './quizTypes';
 
-export const getQuizzes = () => {
-    return (dispatch) => {
-        dispatch(getQuizzesRequest())
-        axios.get('/quizmaster/Quiz/getQuizzes')
-        .then(
-            response => {
-                const quizStore = response.data
-                dispatch(getQuizzesSuccess(quizStore))
-            }
-        )
-        .catch(
-            error => {
-                dispatch(getQuizzesFailure(error.message))
-            }
-        )
-    }
+export const getQuizzes = () =>  async(dispatch) => {
+    try{
+        const token = {
+            headers:{
+                Authorization: localStorage.getItem("token"), 
+            },
+        };
+        const res = await axios.get('/quizmaster/getQuizzes', token);
+        dispatch({
+            type: GET_QUIZ_SUCCESS,
+            payload: res.data
+        });
+    } catch (err) {
+        dispatch({
+            type: GET_QUIZ_FAILURE,
+            payload: err
+        });
+    };
+}
+
+export const getSingleQuiz = (id) =>  async(dispatch) => {
+    try{
+        const token = {
+            headers:{
+                Authorization: localStorage.getItem("token"), 
+            },
+        };
+        const res = await axios.get('/quizmaster/getQuiz?id=' + id, token)
+        dispatch({
+            type: GET_SINGLE_QUIZ,
+            payload: res.data
+        });
+    } catch (err) {
+        dispatch({
+            type: GET_QUIZ_FAILURE,
+            payload: err
+        });
+    };
 }
 
 export const getQuizzesRequest = () => {
@@ -44,19 +66,6 @@ export const getQuizzesFailure = error => {
         payload: error
     }
 }
-
-export const getSingleQuiz = (id) => {
-    return (dispatch) =>{
-        dispatch(getQuizzesRequest)
-        axios.get('/quizmaster/Quiz/getQuiz/' + id)
-        .then(
-        response => {
-            const selectedQuiz = response.data
-            dispatch(getSingleQuizSuccess(selectedQuiz))
-        }
-    )
-    }
-};
 
 export const getSingleQuizSuccess = selectedQuiz => {
     return {

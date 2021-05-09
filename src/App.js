@@ -19,9 +19,9 @@ function App() {
     <div className="App">
           <Route path="/" component={NavBar}/>
           <ProtectedRoute exact path="/" component={HomePage}  currentUser={ user } />
-          <ProtectedRoute path="/viewQuiz" component={ViewPage}/>
-          <ProtectedRoute path="/editQuiz" component={EditPage}/>
-          <ProtectedRoute path="/createQuiz" component={CreatePage}/>
+          <ProtectedRoute path="/viewQuiz" component={ViewPage} currentUser={ user } />
+          <ProtectedRoute path="/editQuiz" component={EditPage} currentUser={ user }/>
+          <ProtectedRoute path="/createQuiz" component={CreatePage} currentUser={ user }/>
           <Route exact path="/login" component={LoginPage}/>
 
      

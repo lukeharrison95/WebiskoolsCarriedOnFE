@@ -13,6 +13,7 @@ const QuizContainer = (props) => {
 
         function selectQuiz(id){
         dispatch(getSingleQuiz(id))
+        console.log("hit me")
         history.push("/viewQuiz", {selectedQuiz:props.quizStore.selectedQuiz})        
     }
         function editQuiz(id){
